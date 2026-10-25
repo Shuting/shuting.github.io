@@ -1,4 +1,4 @@
-import {initNews} from './news.js?v=1';
+import {initNews} from './news.js?v=board3';
 import {initAbout} from './about.js?v=visual-first1';
 import {initMachineLearning} from './machine-learning.js?v=visual4';
 import {initPrecipitation} from './precipitation.js?v=visual3';
@@ -98,7 +98,7 @@ function openNews(updateHistory=true){
   goHome(false,false);newsActive=true;home.hidden=true;$('news-page').hidden=false;
   if(updateHistory&&location.hash!=='#news')history.pushState({},'','#news');
   document.querySelectorAll('[data-section-link]').forEach(link=>{if(link.hash==='#news')link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
-  document.title='最新消息 · 舒婷 Ting Shu';window.scrollTo({top:0,behavior:'instant'});$('news-page').focus({preventScroll:true});$('announcement').textContent='已进入实验室小报，可按类别和年份查看消息。';
+  document.title='团队动态 · 舒婷 Ting Shu';window.scrollTo({top:0,behavior:'instant'});$('news-page').focus({preventScroll:true});$('announcement').textContent='已进入团队动态，公告板展示每类最新三条，完整列表支持筛选与排序。';
 }
 function openAbout(updateHistory=true){
   goHome(false,false);aboutActive=true;home.hidden=true;$('about-page').hidden=false;aboutPage.setActive(true);
