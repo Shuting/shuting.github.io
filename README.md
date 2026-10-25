@@ -136,4 +136,6 @@ All four research pages open directly on their interactive visualizations. Forme
 
 ## Team updates
 
-`#news` opens 团队动态. The cork noticeboard shows the latest three events in each of four categories, pinned with category colors. “查看更多” moves to the complete list below. The list supports category/year filters, chronological or category grouping, and ascending/descending dates. All 14 supplied events remain in `data/news.js`. The cork texture is an original procedural SVG, with no external image dependency.
+`#news` opens the team journal. A white sheet with blue ruled lines holds a tilted, printed three-month calendar and handwritten annotations linked to circled event dates. Year and quarter default to the visitor’s current date. The complete 14-event archive is outside the paper and supports category/year filters, category grouping, and ascending/descending dates. Event content remains in `data/news.js`.
+
+The handwritten Long Cang font is bundled locally under the SIL Open Font License; see `assets/fonts/LongCang-OFL.txt`. Illustrations are original inline SVG/CSS. Calendar connections follow responsive layouts and recalculate after font loading and resizing.
