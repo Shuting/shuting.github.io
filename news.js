@@ -111,15 +111,16 @@ export function initNews(root,onHome){
     let started;
     function curl(time){
      started??=time;
-     const t=Math.min(1,(time-started)/1250),progress=t*t*(3-2*t),wave=Math.sin(Math.PI*progress);
+     const t=Math.min(1,(time-started)/880),progress=t*t*(3-2*t),wave=Math.sin(Math.PI*progress);
      let x=0,z=0;
      strips.forEach((strip,i)=>{
       const u=(i+.5)/count;
-      // The edge leads the spine, forming a continuous, softly curled sheet.
-      const angle=Math.PI*progress+.9*wave*(u-.28),dx=stripWidth*Math.cos(angle),dz=stripWidth*Math.sin(angle);
+      // Keep the sheet close to the book: a low lift and mild curl avoid an exaggerated sweep.
+      const angle=Math.PI*progress+.46*wave*(u-.28),cos=Math.cos(angle),sin=.18*Math.sin(angle),dx=stripWidth*cos,dz=stripWidth*sin;
+      const tilt=Math.atan2(sin,cos),stretch=Math.hypot(cos,sin);
       const px=forward?x:-(x+dx),pz=forward?z:z+dz;
-      strip.style.transform=`translate3d(${px}px,${-9*wave*u*u}px,${pz}px) rotateY(${-sign*angle}rad)`;
-      const shade=1-.07*wave*Math.sin(Math.PI*u);
+      strip.style.transform=`translate3d(${px}px,${-2*wave*u*u}px,${pz}px) rotateY(${-sign*tilt}rad) scaleX(${stretch})`;
+      const shade=1-.025*wave*Math.sin(Math.PI*u);
       for(const face of strip.children)face.style.filter=`brightness(${shade})`;
       x+=dx;z+=dz;
      });

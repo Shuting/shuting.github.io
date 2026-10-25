@@ -1,4 +1,4 @@
-import {initNews} from './news.js?v=softbook1';
+import {initNews} from './news.js?v=softbook2';
 import {initAbout} from './about.js?v=visual-first1';
 import {initMachineLearning} from './machine-learning.js?v=visual4';
 import {initPrecipitation} from './precipitation.js?v=visual3';
