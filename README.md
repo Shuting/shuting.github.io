@@ -139,3 +139,5 @@ All four research pages open directly on their interactive visualizations. Forme
 `#news` opens the team journal. A white sheet with blue ruled lines holds a tilted, printed three-month calendar and handwritten annotations linked to circled event dates. Year and quarter default to the visitor’s current date. The complete 14-event archive is outside the paper and supports category/year filters, category grouping, and ascending/descending dates. Event content remains in `data/news.js`.
 
 The handwritten Long Cang font is bundled locally under the SIL Open Font License; see `assets/fonts/LongCang-OFL.txt`. Illustrations are original inline SVG/CSS. Calendar connections follow responsive layouts and recalculate after font loading and resizing.
+
+The journal is an open two-page notebook with a centre crease. Later periods turn the right leaf to the left; earlier periods turn the left leaf to the right. The animated sheet bends progressively across 24 strips, with front/back content preserved; reduced-motion preferences skip animation. Narrow screens can pan across the spread. Complete archive content stays below the notebook.
