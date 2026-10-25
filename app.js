@@ -1,3 +1,4 @@
+import {initNews} from './news.js?v=1';
 import {initAbout} from './about.js?v=visual-first1';
 import {initMachineLearning} from './machine-learning.js?v=visual4';
 import {initPrecipitation} from './precipitation.js?v=visual3';
@@ -16,7 +17,7 @@ const $ = id => document.getElementById(id);
 const universe = $('universe'), home = $('home'), detail = $('research-page');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let paused = reducedMotion.matches, hovered = -1, busy = false, currentTopic = null, world = null;
-let transitionToken = 0, returnFocus = null, teachingActive = false, joinActive = false, collaborationActive = false, aboutActive = false;
+let transitionToken = 0, returnFocus = null, teachingActive = false, joinActive = false, collaborationActive = false, aboutActive = false, newsActive = false;
 const labels = [], researchButtons = [];
 const machineLearning=initMachineLearning($('ml-page'),()=>goHome());
 const precipitation=initPrecipitation($('precipitation-page'),()=>goHome());
@@ -26,6 +27,7 @@ const teaching=initTeaching($('teaching-page'),()=>goHome());
 const joinPage=initJoin($('join-page'),()=>goHome());
 const collaborationPage=initCollaboration($('collaboration-page'),()=>goHome());
 const aboutPage=initAbout($('about-page'),()=>goHome());
+initNews($('news-page'),()=>goHome());
 document.getElementById('year').textContent = new Date().getFullYear();
 const researchSwitcher=$('research-switcher');
 function closeResearchSwitcher(restoreFocus=false){
@@ -77,19 +79,26 @@ $('motion-toggle').addEventListener('click',()=>{paused=!paused;updateMotion();}
 reducedMotion.addEventListener('change',e=>{paused=e.matches;updateMotion();});
 document.querySelector('.identity').addEventListener('click',e=>{e.preventDefault();goHome();});
 document.querySelectorAll('a[href="#research-list"]').forEach(a=>a.addEventListener('click',e=>{
-  e.preventDefault();if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive)goHome(false);$('research-list').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'center'});researchButtons[0].focus({preventScroll:true});
+  e.preventDefault();if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive||newsActive)goHome(false);$('research-list').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'center'});researchButtons[0].focus({preventScroll:true});
 }));
-const personalSections=['about','teaching','collaboration','join'];
+const personalSections=['news','about','teaching','collaboration','join'];
 function openSection(id,updateHistory=true,smooth=true){
   if(!personalSections.includes(id))return;
+  if(id==='news'){openNews(updateHistory);return;}
   if(id==='about'){openAbout(updateHistory);return;}
   if(id==='teaching'){openTeaching(updateHistory);return;}
   if(id==='join'){openJoin(updateHistory);return;}
   if(id==='collaboration'){openCollaboration(updateHistory);return;}
-  if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive)goHome(false,false);
+  if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive||newsActive)goHome(false,false);
   if(updateHistory&&location.hash!==`#${id}`)history.pushState({},'',`#${id}`);
   document.querySelectorAll('[data-section-link]').forEach(link=>{if(link.hash===`#${id}`)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
   const section=$(id);section.scrollIntoView({behavior:smooth&&!reducedMotion.matches?'smooth':'instant',block:'start'});section.focus({preventScroll:true});
+}
+function openNews(updateHistory=true){
+  goHome(false,false);newsActive=true;home.hidden=true;$('news-page').hidden=false;
+  if(updateHistory&&location.hash!=='#news')history.pushState({},'','#news');
+  document.querySelectorAll('[data-section-link]').forEach(link=>{if(link.hash==='#news')link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
+  document.title='最新消息 · 舒婷 Ting Shu';window.scrollTo({top:0,behavior:'instant'});$('news-page').focus({preventScroll:true});$('announcement').textContent='已进入实验室小报，可按类别和年份查看消息。';
 }
 function openAbout(updateHistory=true){
   goHome(false,false);aboutActive=true;home.hidden=true;$('about-page').hidden=false;aboutPage.setActive(true);
@@ -124,10 +133,11 @@ document.querySelectorAll('[data-email]').forEach(link=>{
 });
 $('back-home').addEventListener('click',()=>goHome());
 $('next-research').addEventListener('click',()=>{const next=(currentTopic+1)%topics.length;goHome(false);launch(next);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(busy||currentTopic!==null||teachingActive||joinActive||collaborationActive||aboutActive))goHome();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(busy||currentTopic!==null||teachingActive||joinActive||collaborationActive||aboutActive||newsActive))goHome();});
 
 function fillTopic(i){
   closeResearchSwitcher();
+  newsActive=false;$('news-page').hidden=true;
   aboutActive=false;$('about-page').hidden=true;aboutPage.setActive(false);
   collaborationActive=false;$('collaboration-page').hidden=true;collaborationPage.setActive(false);
   joinActive=false;$('join-page').hidden=true;joinPage.setActive(false);
@@ -187,6 +197,7 @@ async function launch(i){
 }
 function goHome(focus=true,replace=true){
   closeResearchSwitcher();
+  newsActive=false;$('news-page').hidden=true;
   aboutActive=false;$('about-page').hidden=true;aboutPage.setActive(false);
   collaborationActive=false;$('collaboration-page').hidden=true;collaborationPage.setActive(false);
   joinActive=false;$('join-page').hidden=true;joinPage.setActive(false);
@@ -199,7 +210,7 @@ function goHome(focus=true,replace=true){
   document.title='舒婷 Ting Shu · AI × Weather';if(replace)history.pushState({},'',location.pathname+location.search);
   if(focus){window.scrollTo({top:0,behavior:'instant'});(returnFocus?.isConnected?returnFocus:document.querySelector('.identity')).focus({preventScroll:true});}
 }
-function readRoute(){const section=location.hash.slice(1);if(personalSections.includes(section)){openSection(section,false,false);return;}const match=location.hash.match(/^#research\/([a-z]+)$/);const i=match?topics.findIndex(t=>t.id===match[1]):-1;if(i>=0){++transitionToken;busy=false;$('flight-overlay').classList.remove('active','covered');fillTopic(i);home.hidden=true;detail.hidden=false;world?.stopFlight();window.scrollTo({top:0,behavior:'instant'});$('announcement').textContent=`已进入${topics[i].title}`;}else if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive)goHome(false,false);}
+function readRoute(){const section=location.hash.slice(1);if(personalSections.includes(section)){openSection(section,false,false);return;}const match=location.hash.match(/^#research\/([a-z]+)$/);const i=match?topics.findIndex(t=>t.id===match[1]):-1;if(i>=0){++transitionToken;busy=false;$('flight-overlay').classList.remove('active','covered');fillTopic(i);home.hidden=true;detail.hidden=false;world?.stopFlight();window.scrollTo({top:0,behavior:'instant'});$('announcement').textContent=`已进入${topics[i].title}`;}else if(currentTopic!==null||busy||teachingActive||joinActive||collaborationActive||aboutActive||newsActive)goHome(false,false);}
 window.addEventListener('popstate',readRoute);window.addEventListener('hashchange',readRoute);readRoute();
 
 function fallback(message){

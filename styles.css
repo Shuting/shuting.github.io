@@ -46,3 +46,6 @@ dialog{border:1px solid #dce1d4;border-radius:15px;background:var(--paper);color
 @media(prefers-reduced-motion:reduce){.research-cloud summary svg,.research-cloud summary i{transition:none}}
 
 @media(min-width:761px){#research-page.is-multimodal .mm-hero{padding-top:112px}#research-page.is-learning .ml-hero{padding-top:72px}}
+
+@media(min-width:1001px) and (max-width:1380px){.brand-note,.brand-divider{display:none}.site-header nav{gap:20px}}
+@media(max-width:760px){.site-header nav{gap:8px;font-size:11px;flex-wrap:wrap}.site-header nav a{white-space:nowrap}}

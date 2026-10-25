@@ -133,3 +133,7 @@ All four research pages open directly on their interactive visualizations. Forme
 教学页使用米白底上的细线电路与独立课程元件，移除整块绿色板底、厚边、螺丝与边缘接插件；保留课程选择和电流动画。
 
 主导航持续以橙色标记当前子页面；研究页的云朵显示当前方向名称与“其他方向”，点击展开方向列表。
+
+## Latest news
+
+`#news` opens the lab newspaper. The 14 owner-supplied events are in `data/news.js`, sorted by event date with category and year filters. Acceptance notices preserve the supplied conference tracks; no unprovided award, funding amount, or publication URL is added.
