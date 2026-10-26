@@ -1,4 +1,4 @@
-import {initNews} from './news.js?v=softbook2';
+import {initNews} from './news.js?v=balloons4';
 import {initAbout} from './about.js?v=visual-first1';
 import {initMachineLearning} from './machine-learning.js?v=visual4';
 import {initPrecipitation} from './precipitation.js?v=visual3';
@@ -98,7 +98,7 @@ function openNews(updateHistory=true){
   goHome(false,false);newsActive=true;home.hidden=true;$('news-page').hidden=false;
   if(updateHistory&&location.hash!=='#news')history.pushState({},'','#news');
   document.querySelectorAll('[data-section-link]').forEach(link=>{if(link.hash==='#news')link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
-  document.title='团队动态 · 舒婷 Ting Shu';window.scrollTo({top:0,behavior:'instant'});$('news-page').focus({preventScroll:true});$('announcement').textContent='已进入团队手帐，切换年份和季度，查看红圈日期连接的手写动态。';
+  document.title='团队动态 · 舒婷 Ting Shu';window.scrollTo({top:0,behavior:'instant'});$('news-page').focus({preventScroll:true});$('announcement').textContent='已进入团队动态，点击四个主热气球可筛选对应类别的完整消息。';
 }
 function openAbout(updateHistory=true){
   goHome(false,false);aboutActive=true;home.hidden=true;$('about-page').hidden=false;aboutPage.setActive(true);
