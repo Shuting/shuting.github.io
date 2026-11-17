@@ -145,5 +145,32 @@
     "stamp": "新的出发",
     "note": "TOGETHER WE EXPLORE",
     "brief": "4 位伙伴确定研究方向"
+  },
+  {
+    "id": "3b313d09-901a-4ad0-91e9-43ec1232d2ce",
+    "category": "papers",
+    "date": "2026-11-17",
+    "title": "课题组论文ACM MM2026online",
+    "text": "课题组论文在ACM MM2026官网online\nhttps://dl.acm.org/doi/10.1145/3767308.3835031",
+    "work": "FM2: Unified Federated Foundation Models for Heterogeneous Multimodal Medical Imaging",
+    "brief": "新论文*ACM MM2026"
+  },
+  {
+    "id": "4edbe272-a251-4c19-9e22-c455993544e3",
+    "category": "papers",
+    "date": "2026-11-17",
+    "title": "课题组论文EMNLP2026online",
+    "text": "课题组论文EMNLP2026online\nhttps://aclanthology.org/2026.findings-emnlp.1034/",
+    "work": "The Physicist, the Coder, and the Critic: Agentic Photonic Crystal Fiber Inverse Design via Verbal Gradient Descent",
+    "brief": "新论文*EMNLP2026"
+  },
+  {
+    "id": "92acd97a-63ca-4024-aa30-d5c27a44a00a",
+    "category": "projects",
+    "date": "2026-11-17",
+    "title": "集合成员智能生成科研课题正式立项",
+    "text": "基于人工智能生成集合成员，为集合同化提供多样合理的初始场。",
+    "work": "",
+    "brief": "新项目"
   }
 ]
