@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>草稿预览 · 团队动态</title><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../news.css"><style>.preview-bar{padding:18px;text-align:center;background:#e5ecd9;font-size:13px;position:relative;z-index:30}.preview-bar a{margin-left:20px;text-decoration:underline}</style></head><body><div class="preview-bar">草稿预览 · 尚未发布<a href="index.html">返回管理页面 ↗</a></div><main id="preview"></main><script type="module">
+import {initNews} from '../news.js?v=manager1';
+try{const response=await fetch('/api/preview',{cache:'no-store'});if(!response.ok)throw Error();const {items}=await response.json();await initNews(document.querySelector('#preview'),()=>location.href='../index.html',items);}catch{document.querySelector('#preview').textContent='请从本机管理后台打开预览。';}
+</script></body></html>

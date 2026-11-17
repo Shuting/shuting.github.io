@@ -136,8 +136,12 @@ All four research pages open directly on their interactive visualizations. Forme
 
 ## Team updates
 
-`#news` opens a balloon landscape. Four large pastel balloons represent papers, projects, talks and team updates, each with a brief latest-event caption. Clicking one scrolls to the complete archive and selects its category. Smaller balloons drift in both directions above a mountain-and-river illustration. The complete 14-event archive retains category/year filters, category grouping, and ascending/descending dates. Event content remains in `data/news.js`.
+`#news` opens a balloon landscape. Four large pastel balloons represent papers, projects, talks and team updates, each with a brief latest-event caption. Clicking one scrolls to the complete archive and selects its category. Smaller balloons drift in both directions above a mountain-and-river illustration. The complete 14-event archive retains category/year filters, category grouping, and ascending/descending dates. Event content is stored in `data/news.json`.
 
 The handwritten Long Cang font is bundled locally under the SIL Open Font License; see `assets/fonts/LongCang-OFL.txt`. Transparent generated balloon and landscape illustrations are in `assets/news/balloons/`; its README records generation prompts and the corrected suspension geometry. The landscape is a 3D-style illustration, not a WebGL model.
 
 Balloon flights loop with varied sizes, speeds and directions. A pause control brings the four main categories into view, keyboard focus keeps the selected balloon stable, and reduced-motion preferences disable animation. Narrow screens arrange the main balloons in two lanes. The detailed archive remains below the scene.
+
+## 本机动态管理
+
+双击 `打开动态管理.command`，即可用表单新增、编辑、删除、预览并发布团队动态。详细步骤见 `动态管理使用说明.md`。运行中的后台会被自动复用。管理后台只在本机运行，复用 Git 凭据，以 GitHub Contents API 更新一个数据文件；网站本身仍由 GitHub Pages 静态托管。

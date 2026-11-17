@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>团队动态管理 · Ting Shu</title><link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="editor.css"></head>
+<body>
+<header><a class="brand" href="../index.html#news" target="_blank" rel="noopener"><img src="../favicon.svg" alt="">小小气象研究室 <span>内容管理</span></a><a href="https://shuting.github.io/#news" target="_blank" rel="noopener">查看线上网站 ↗</a></header>
+<main>
+<section class="intro"><div><p class="eyebrow">把新的故事，带上天空。</p><h1>团队动态 <span>的小小编辑室</span></h1><p>写下一条新消息，让热气球捎上它。</p></div><div class="intro-art" aria-hidden="true">✧<img src="../favicon.svg" alt="">✦</div></section>
+<div id="notice" class="notice" role="status">正在打开本机后台…</div>
+<section class="workspace" id="workspace" hidden>
+<aside class="archive"><div class="archive-heading"><h2>消息簿 <span id="count"></span></h2><button id="add" class="primary">＋ 新增动态</button></div><label class="search-label"><span class="sr-only">搜索动态</span><input id="search" type="search" placeholder="搜索标题、正文或论文名"></label><div class="tabs" id="filters" aria-label="筛选动态类别"></div><div id="entries" class="entries"></div></aside>
+<section class="editor"><div class="editor-heading"><h2 id="form-title">编辑动态</h2><span id="draft-status">草稿自动保存在此浏览器</span></div><form id="form">
+<div class="pair"><label>消息类别<select id="category" name="category" required><option value="papers">论文发表</option><option value="projects">项目进展</option><option value="talks">学术交流</option><option value="team">团队动态</option></select></label><label>发生日期<input name="date" id="date" type="date" required></label></div>
+<label>标题<input name="title" id="title" maxlength="160" required placeholder="例如：课题组论文获会议接收"></label>
+<label>正文<textarea name="text" id="text" rows="4" maxlength="3000" required placeholder="写下这条消息的具体内容"></textarea></label>
+<label>论文 / 报告名称 <span class="optional">选填</span><textarea name="work" id="work" rows="2" maxlength="1000" placeholder="完整名称，中英文均可"></textarea></label>
+<label>热气球上的短句 <span class="optional">选填 · 建议 20 字以内</span><input name="brief" id="brief" maxlength="40" placeholder="例如：新论文 · NeurIPS 2026"><small>每一类的最新消息会出现在对应热气球下方；留空时使用标题。</small></label>
+<div class="form-actions"><button type="submit" class="primary">保存这条动态</button><button type="button" id="cancel-edit">取消本条修改</button><button type="button" id="delete" class="danger">删除这条</button><span id="form-status" role="status"></span></div>
+</form><div class="small-note">✧ 保存到草稿后，可继续编辑其他消息。点击「发布到网站」才会更新线上内容。</div></section>
+</section>
+<footer id="toolbar" hidden><div class="secondary-actions"><button id="export">导出草稿</button><label class="import-button">导入草稿<input type="file" id="import" accept="application/json,.json" hidden></label><button id="sync">读取线上版本</button></div><div class="publish-actions"><span id="changes"></span><button id="preview">预览页面 ↗</button><button id="publish" class="primary">发布到网站</button></div></footer>
+</main>
+<dialog id="review"><h2>让新消息起飞？</h2><p id="review-summary"></p><p>确认后将提交到 GitHub，网站通常需要稍等片刻完成更新。</p><div id="review-list"></div><div class="dialog-actions"><button id="cancel-publish">再检查一下</button><button id="confirm-publish" class="primary">确认发布</button></div></dialog>
+<script type="module" src="editor.js"></script>
+</body></html>
